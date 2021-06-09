@@ -100,19 +100,40 @@ duplicated = df.duplicated(subset=duplicate_columns_to_check)
 display(df[duplicated])
 
 
-# In[40]:
+# In[44]:
 
 
 # - what are the different values for the `keep` kwarg? What do they do? Which do you want to use here?
+# - look up how to use the `.sort_values()` method and sort the dataframe
+
+duplicate_columns_to_check = ["ORIGAIRPORTNAME", "DESTAIRPORTNAME", "AIRLINECODE", "FLIGHTDATE", "CRSDEPTIME", "DEPTIME", "ARRTIME"]
+# duplicated = df.duplicated(subset=duplicate_columns_to_check, keep=False)
+# display(df[duplicated][duplicate_columns_to_check].sort_values(['FLIGHTDATE','ORIGAIRPORTNAME']))
+
+# - use the `.drop_duplicates()` method to remove the duplicates
+df_duplicates_removed = df.drop_duplicates(subset=duplicate_columns_to_check)
+
+display(df)
+display(df_duplicates_removed)
+
+
+
+
+# In[47]:
+
+
+# - look up how to use the `.unique()` method and check the ‘TAILNUM’ column. 
+# Notice anything that shouldn’t be there?
+display(df['TAILNUM'])
+print(list(df['TAILNUM'].unique()) )
+display(df_duplicates_removed)
+
+# - replace
 
 
 # In[ ]:
 
 
-# - use the `.drop_duplicates()` method to remove the duplicates
-# - look up how to use the `.sort_values()` method and sort the dataframe
-# - look up how to use the `.unique()` method and check the ‘TAILNUM’ column. Notice anything that shouldn’t be there?
-# - replace
 # - use the `.value_counts()` method to count the different values in the “CANCELLED” column. There is definitely something wrong. Check out the `.replace()` method and fix it. What are the types of arguments that `.replace()` can take in?
 # - where appropriate, convert numerical columns into categories
 
